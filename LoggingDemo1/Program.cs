@@ -13,6 +13,8 @@ namespace LoggingDemo1
             //注册日志服务，并增加配置AddConsole
             services.AddLogging(loggerBuilder=> {
                 loggerBuilder.AddConsole();
+                //增加包Microsoft.Extensions.Logging.EventLog
+                loggerBuilder.AddEventLog();
                 //设置最低显示级别
                 loggerBuilder.SetMinimumLevel(LogLevel.Trace);
             });
