@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
 using System;
 
 namespace LoggingDemo1
@@ -12,9 +13,12 @@ namespace LoggingDemo1
       
             //注册日志服务，并增加配置AddConsole
             services.AddLogging(loggerBuilder=> {
-                loggerBuilder.AddConsole();
+                //loggerBuilder.AddConsole();
                 //增加包Microsoft.Extensions.Logging.EventLog
-                loggerBuilder.AddEventLog();
+                //loggerBuilder.AddEventLog();
+
+                loggerBuilder.AddNLog();
+
                 //设置最低显示级别
                 loggerBuilder.SetMinimumLevel(LogLevel.Trace);
             });
