@@ -22,7 +22,7 @@ namespace EFCoreDemo2
         {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=EFCoreDemo1;Integrated Security=true;");
-            optionsBuilder.LogTo(Console.WriteLine);
+            //optionsBuilder.LogTo(Console.WriteLine);
             //optionsBuilder.LogTo(msg=> {
             //    if (!msg.Contains("CommandExcuing")&& !msg.Contains("DbCommand"))
             //    {

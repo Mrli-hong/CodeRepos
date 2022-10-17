@@ -5,6 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using EFCoreDemo2.Model;
 using System.Threading.Tasks;
+using System.Data.Common;
+using Dapper;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace EFCoreDemo2
 {
@@ -119,15 +122,69 @@ namespace EFCoreDemo2
         }
         static async Task Main(string[] args)
         {
-
+             
             using (MyDbContext db = new MyDbContext())
             {
-               
-                int age = 10;
-                string Name = "LI";
-                FormattableString sql = @$"insert into T_Book(Title,Name) select TiTle,{Name},'哈哈' from  T_Articles Where age>={age}";
-                Console.WriteLine("格式"+sql.Format);
-                Console.WriteLine("参数" + String.Join(',',sql.GetArguments()));
+                
+                Book b1 = new Book() { ID = 1, Name = "MVC" };
+                var a = db.Entry(b1);
+                a.Property("Name").IsModified = true;
+                Console.WriteLine(a.DebugView.LongView);
+                //var result = db.Books.Take(2).ToArray();
+                //var a1 = result[0];
+                //var a2 = result[1];
+                //a1.Name = "Hello";
+                //db.Remove(a2);
+                //Book a3 = new Book();
+                //Book a4 = new Book() { Name="Ni"};
+                //db.Books.Add(a4);
+                //EntityEntry b1 = db.Entry(a1);
+                //EntityEntry b2 = db.Entry(a2);
+                //EntityEntry b3 = db.Entry(a3);
+                //EntityEntry b4 = db.Entry(a4);
+                //Console.WriteLine(b1.State);
+                //Console.WriteLine(b3.DebugView.LongView); 
+                //Console.WriteLine(b2.State);
+                //Console.WriteLine(b3.State);
+                //Console.WriteLine(b4.State);
+                #region test
+                //var result = db.Database.GetDbConnection().Query<Book>("select * from T_Partment where id=1");
+                //foreach (var item in result)
+                //{
+                //    Console.WriteLine(item.Name);
+                //}
+                //DbConnection conn = db.Database.GetDbConnection();
+                //if (conn.State != System.Data.ConnectionState.Open)
+                //{
+                //    await conn.OpenAsync();
+                //}
+                //using (var cmd = conn.CreateCommand())
+                //{
+                //    cmd.CommandText = @"select Name from T_Partment where id=@id";
+                //    var param = cmd.CreateParameter();
+                //    param.ParameterName = "@id";
+                //    param.Value = 1;
+                //    cmd.Parameters.Add(param);
+                //    using (var reader = await cmd.ExecuteReaderAsync())
+                //    {
+                //        while (await reader.ReadAsync())
+                //        {
+                //            var result = await reader.GetFieldValueAsync<String>(0);
+                //            Console.WriteLine(result);
+                //        }
+                //    }
+                //}
+                //IQueryable<Partment> GetBookSqlStr = db.Partments.FromSqlInterpolated(@$"select * from T_Partment ");
+                //foreach (var item in GetBookSqlStr.Include(e=>e.OriPartment).OrderBy(e=>Guid.NewGuid()))
+                //{
+                //    Console.WriteLine(item.Name);
+                //}
+
+                //int age = 10;
+                //string Name = "LI";
+                //FormattableString sql = @$"insert into T_Book(Title,Name) select TiTle,{Name},'哈哈' from  T_Articles Where age>={age}";
+                //Console.WriteLine("格式"+sql.Format);
+                //Console.WriteLine("参数" + String.Join(',',sql.GetArguments()));
                 //await db.Database.ExecuteSqlInterpolatedAsync(@$"insert into T_Book(Title,Name)
                 //                                              select TiTle,{Name},'哈哈'
                 //                                              from 
@@ -161,7 +218,7 @@ namespace EFCoreDemo2
                 //}
                 //var articleID = db.Comments.Select(e => new { ID = e.Id,id=e.ArticleId}).First(e=>e.ID==1);
                 //Console.WriteLine(articleID.ID);
-
+                #endregion
             }
         }
     }

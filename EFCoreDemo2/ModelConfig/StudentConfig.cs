@@ -14,6 +14,8 @@ namespace EFCoreDemo2.ModelConfig
         public void Configure(EntityTypeBuilder<Student> builder)
         {
             builder.ToTable("T_Students");
+            //全局过滤筛选器
+            builder.HasQueryFilter(e => e.Name.Contains("LI"));
         }
     }
 }
