@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using System.Data.Common;
 using Dapper;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Linq.Expressions;
+using ZSpitz.Util;
+using ExpressionTreeToString;
 
 namespace EFCoreDemo2
 {
@@ -122,104 +125,109 @@ namespace EFCoreDemo2
         }
         static async Task Main(string[] args)
         {
-             
-            using (MyDbContext db = new MyDbContext())
-            {
-                
-                Book b1 = new Book() { ID = 1, Name = "MVC" };
-                var a = db.Entry(b1);
-                a.Property("Name").IsModified = true;
-                Console.WriteLine(a.DebugView.LongView);
-                //var result = db.Books.Take(2).ToArray();
-                //var a1 = result[0];
-                //var a2 = result[1];
-                //a1.Name = "Hello";
-                //db.Remove(a2);
-                //Book a3 = new Book();
-                //Book a4 = new Book() { Name="Ni"};
-                //db.Books.Add(a4);
-                //EntityEntry b1 = db.Entry(a1);
-                //EntityEntry b2 = db.Entry(a2);
-                //EntityEntry b3 = db.Entry(a3);
-                //EntityEntry b4 = db.Entry(a4);
-                //Console.WriteLine(b1.State);
-                //Console.WriteLine(b3.DebugView.LongView); 
-                //Console.WriteLine(b2.State);
-                //Console.WriteLine(b3.State);
-                //Console.WriteLine(b4.State);
-                #region test
-                //var result = db.Database.GetDbConnection().Query<Book>("select * from T_Partment where id=1");
-                //foreach (var item in result)
-                //{
-                //    Console.WriteLine(item.Name);
-                //}
-                //DbConnection conn = db.Database.GetDbConnection();
-                //if (conn.State != System.Data.ConnectionState.Open)
-                //{
-                //    await conn.OpenAsync();
-                //}
-                //using (var cmd = conn.CreateCommand())
-                //{
-                //    cmd.CommandText = @"select Name from T_Partment where id=@id";
-                //    var param = cmd.CreateParameter();
-                //    param.ParameterName = "@id";
-                //    param.Value = 1;
-                //    cmd.Parameters.Add(param);
-                //    using (var reader = await cmd.ExecuteReaderAsync())
-                //    {
-                //        while (await reader.ReadAsync())
-                //        {
-                //            var result = await reader.GetFieldValueAsync<String>(0);
-                //            Console.WriteLine(result);
-                //        }
-                //    }
-                //}
-                //IQueryable<Partment> GetBookSqlStr = db.Partments.FromSqlInterpolated(@$"select * from T_Partment ");
-                //foreach (var item in GetBookSqlStr.Include(e=>e.OriPartment).OrderBy(e=>Guid.NewGuid()))
-                //{
-                //    Console.WriteLine(item.Name);
-                //}
 
-                //int age = 10;
-                //string Name = "LI";
-                //FormattableString sql = @$"insert into T_Book(Title,Name) select TiTle,{Name},'哈哈' from  T_Articles Where age>={age}";
-                //Console.WriteLine("格式"+sql.Format);
-                //Console.WriteLine("参数" + String.Join(',',sql.GetArguments()));
-                //await db.Database.ExecuteSqlInterpolatedAsync(@$"insert into T_Book(Title,Name)
-                //                                              select TiTle,{Name},'哈哈'
-                //                                              from 
-                //                                              T_Articles
-                //                                              Where age>={age}
-                //                                              ");
-                //IQueryable<Book> sqlStr = db.Books;
-                //foreach (var item in sqlStr)
-                //{
-                //    Console.WriteLine(item.Name);
-                //}
-                //QueryBooks("MVC", true, false, 100);
-                //PrintPage(3, 2);
-                //PrintPartment(0,db,db.Partments.Include(e=>e.ChildrenPartment).Single(e => e.OriPartment == null));
-                //IQueryable queryable = db.Articles.Where(e => e.Content.Contains("HZ"));
-                //IEnumerable<Article> Ienumber = db.Articles;
-                //var reuslt = Ienumber.Where(e => e.Content.Contains("HZ"));
-                //Article article = new Article { Title = "你好", Content = "sdsad" };
-                //Comment c1 = new Comment() { Message = "tinghaode" };
-                //Comment c2 = new Comment() { Message = "tinghaode2" };
-                //article.Comments.Add(c1);
-                //article.Comments.Add(c2);
-                //db.Articles.Add(article);
-                //db.SaveChanges();Single(e=>e.Id==1);
-                //var result = db.Articles.Include(e => e.Comments).First(e=>e.Id==1);
-                //foreach (var item in result.Comments)
-                //{
-                //    Console.WriteLine("-------------------------");
-                //    Console.WriteLine(item.Id);
-                //    Console.WriteLine("-------------------------");
-                //}
-                //var articleID = db.Comments.Select(e => new { ID = e.Id,id=e.ArticleId}).First(e=>e.ID==1);
-                //Console.WriteLine(articleID.ID);
-                #endregion
-            }
+            Func<Book, bool> f1 = e => e.Price > 1999;
+            Expression<Func<Book, bool>> f2 = e => e.Price > 2999;
+            Console.WriteLine(f2.ToString("Object notation", Language.CSharp));
+            //using (MyDbContext db = new MyDbContext())
+            //{
+            //    db.Books.Where(f1).ToList();
+            //    db.Books.Where(f2).ToList();
+            //}
+            //Book b1 = new Book() { ID = 1, Name = "MVC" };
+            //var a = db.Entry(b1);
+            //a.Property("Name").IsModified = true;
+            //Console.WriteLine(a.DebugView.LongView);
+            //var result = db.Books.Take(2).ToArray();
+            //var a1 = result[0];
+            //var a2 = result[1];
+            //a1.Name = "Hello";
+            //db.Remove(a2);
+            //Book a3 = new Book();
+            //Book a4 = new Book() { Name="Ni"};
+            //db.Books.Add(a4);
+            //EntityEntry b1 = db.Entry(a1);
+            //EntityEntry b2 = db.Entry(a2);
+            //EntityEntry b3 = db.Entry(a3);
+            //EntityEntry b4 = db.Entry(a4);
+            //Console.WriteLine(b1.State);
+            //Console.WriteLine(b3.DebugView.LongView); 
+            //Console.WriteLine(b2.State);
+            //Console.WriteLine(b3.State);
+            //Console.WriteLine(b4.State);
+            #region test
+            //var result = db.Database.GetDbConnection().Query<Book>("select * from T_Partment where id=1");
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item.Name);
+            //}
+            //DbConnection conn = db.Database.GetDbConnection();
+            //if (conn.State != System.Data.ConnectionState.Open)
+            //{
+            //    await conn.OpenAsync();
+            //}
+            //using (var cmd = conn.CreateCommand())
+            //{
+            //    cmd.CommandText = @"select Name from T_Partment where id=@id";
+            //    var param = cmd.CreateParameter();
+            //    param.ParameterName = "@id";
+            //    param.Value = 1;
+            //    cmd.Parameters.Add(param);
+            //    using (var reader = await cmd.ExecuteReaderAsync())
+            //    {
+            //        while (await reader.ReadAsync())
+            //        {
+            //            var result = await reader.GetFieldValueAsync<String>(0);
+            //            Console.WriteLine(result);
+            //        }
+            //    }
+            //}
+            //IQueryable<Partment> GetBookSqlStr = db.Partments.FromSqlInterpolated(@$"select * from T_Partment ");
+            //foreach (var item in GetBookSqlStr.Include(e=>e.OriPartment).OrderBy(e=>Guid.NewGuid()))
+            //{
+            //    Console.WriteLine(item.Name);
+            //}
+
+            //int age = 10;
+            //string Name = "LI";
+            //FormattableString sql = @$"insert into T_Book(Title,Name) select TiTle,{Name},'哈哈' from  T_Articles Where age>={age}";
+            //Console.WriteLine("格式"+sql.Format);
+            //Console.WriteLine("参数" + String.Join(',',sql.GetArguments()));
+            //await db.Database.ExecuteSqlInterpolatedAsync(@$"insert into T_Book(Title,Name)
+            //                                              select TiTle,{Name},'哈哈'
+            //                                              from 
+            //                                              T_Articles
+            //                                              Where age>={age}
+            //                                              ");
+            //IQueryable<Book> sqlStr = db.Books;
+            //foreach (var item in sqlStr)
+            //{
+            //    Console.WriteLine(item.Name);
+            //}
+            //QueryBooks("MVC", true, false, 100);
+            //PrintPage(3, 2);
+            //PrintPartment(0,db,db.Partments.Include(e=>e.ChildrenPartment).Single(e => e.OriPartment == null));
+            //IQueryable queryable = db.Articles.Where(e => e.Content.Contains("HZ"));
+            //IEnumerable<Article> Ienumber = db.Articles;
+            //var reuslt = Ienumber.Where(e => e.Content.Contains("HZ"));
+            //Article article = new Article { Title = "你好", Content = "sdsad" };
+            //Comment c1 = new Comment() { Message = "tinghaode" };
+            //Comment c2 = new Comment() { Message = "tinghaode2" };
+            //article.Comments.Add(c1);
+            //article.Comments.Add(c2);
+            //db.Articles.Add(article);
+            //db.SaveChanges();Single(e=>e.Id==1);
+            //var result = db.Articles.Include(e => e.Comments).First(e=>e.Id==1);
+            //foreach (var item in result.Comments)
+            //{
+            //    Console.WriteLine("-------------------------");
+            //    Console.WriteLine(item.Id);
+            //    Console.WriteLine("-------------------------");
+            //}
+            //var articleID = db.Comments.Select(e => new { ID = e.Id,id=e.ArticleId}).First(e=>e.ID==1);
+            //Console.WriteLine(articleID.ID);
+            #endregion
+
         }
     }
 }
