@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DependncyInjectionDemo1": {
+      "commandName": "Project",
+      "commandLineArgs": "Name=List Age=19 Ids:0=22 Proxy:Port=223"
+    }
+  }
+}
