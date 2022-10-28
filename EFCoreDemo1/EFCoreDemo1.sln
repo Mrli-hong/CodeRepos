@@ -21,13 +21,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedisDemo1", "..\RedisDemo1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "综合配置集成", "..\综合配置集成\综合配置集成.csproj", "{7113490B-9251-4BC4-9091-DD67173BC23B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependncyInjectionDemo1", "..\DependncyInjectionDemo1\DependncyInjectionDemo1.csproj", "{C6F65056-824C-47F7-BD69-AE7F94FCC6EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependncyInjectionDemo1", "..\DependncyInjectionDemo1\DependncyInjectionDemo1.csproj", "{C6F65056-824C-47F7-BD69-AE7F94FCC6EB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "分层项目中使用EF", "分层项目中使用EF", "{28A9E29B-F508-4990-8F37-9C07B4649794}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookEF", "..\BookEF\BookEF.csproj", "{E5CE953D-59C0-456E-BD5E-3BBCADE0C75F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookEF", "..\BookEF\BookEF.csproj", "{E5CE953D-59C0-456E-BD5E-3BBCADE0C75F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookEFWebAPI", "..\BookEFWebAPI\BookEFWebAPI.csproj", "{1F43A2E2-3838-4168-8472-39EED4EA1CA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookEFWebAPI", "..\BookEFWebAPI\BookEFWebAPI.csproj", "{1F43A2E2-3838-4168-8472-39EED4EA1CA0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeedLimiteAction", "..\SpeedLimiteAction\SpeedLimiteAction.csproj", "{AE7F6F2E-0686-4CA4-A3A7-0AD6B1AB48A7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Middle", "..\Middle\Middle.csproj", "{55599220-C919-4A9F-8E3F-9DD7432DBD41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddleMarkDown", "..\MiddleMarkDown\MiddleMarkDown.csproj", "{EE693259-C531-4AA6-B03F-31B0558FEC69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +89,18 @@ Global
 		{1F43A2E2-3838-4168-8472-39EED4EA1CA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F43A2E2-3838-4168-8472-39EED4EA1CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F43A2E2-3838-4168-8472-39EED4EA1CA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE7F6F2E-0686-4CA4-A3A7-0AD6B1AB48A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE7F6F2E-0686-4CA4-A3A7-0AD6B1AB48A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE7F6F2E-0686-4CA4-A3A7-0AD6B1AB48A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE7F6F2E-0686-4CA4-A3A7-0AD6B1AB48A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55599220-C919-4A9F-8E3F-9DD7432DBD41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55599220-C919-4A9F-8E3F-9DD7432DBD41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55599220-C919-4A9F-8E3F-9DD7432DBD41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55599220-C919-4A9F-8E3F-9DD7432DBD41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE693259-C531-4AA6-B03F-31B0558FEC69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE693259-C531-4AA6-B03F-31B0558FEC69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE693259-C531-4AA6-B03F-31B0558FEC69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE693259-C531-4AA6-B03F-31B0558FEC69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
