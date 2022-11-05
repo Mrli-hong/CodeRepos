@@ -13,7 +13,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<MyIdentityDbContext>(opt =>
 {
-    opt.UseSqlServer("Server=.;Database=demo1;Trusted_Connection=True;;TrustServerCertificate=true");
+    opt.UseSqlServer("Server=.;Database=demo1;Trusted_Connection=True;TrustServerCertificate=true;");
 });
 //增加数据保护服务
 builder.Services.AddDataProtection();
